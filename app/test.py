@@ -1,6 +1,6 @@
 import unittest
 from flask import Flask
-from api import *
+from app import api
 
 '''
 Tests for Api endpoints
@@ -13,7 +13,7 @@ class Test_Endpoints(unittest.TestCase):
         '''
                 Testing if the GET  requests return the proper status codes
         '''
-        dummy = APP.test_client(self)
+        dummy = api.APP.test_client(self)
         self.assertEqual(dummy.get('/orders').status_code, 200)  # OK
         self.assertEqual(dummy.get('/orders/12').status_code, 200)
         self.assertEqual(dummy.get('/orders/204863').status_code, 200)
