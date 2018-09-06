@@ -1,7 +1,7 @@
 import unittest
 from flask import Flask
-from get_endpoints import *
-from resources import resources
+from api import *
+
 '''
 Tests for Api endpoints
 '''
