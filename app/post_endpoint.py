@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from resources import resources
+from .resources import resources
 APP = Flask(__name__)
 APP.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
