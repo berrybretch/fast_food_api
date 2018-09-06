@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from resources import resources
+from .resources import *
 APP = Flask(__name__)
 APP.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
@@ -31,3 +31,6 @@ def get_order_byid(order_id):
         return 'No such order exists', 404
     order = [i for i in resources.orders if i.get('order_id') == order_id]
     return jsonify(order)
+
+if __name__ == '__main__':
+    APP.run(debug=True)
