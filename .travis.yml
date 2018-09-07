@@ -1,10 +1,9 @@
 language: python
 python:
-  - "3.x"
-  - "3.4"
+  - "3.6.4"
 before_install:
-  python setup.py install
-
+  python setup.py 
+  pip install -r requirements.txt
 script:
   python -m unittest app/test.py
 
