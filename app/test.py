@@ -1,7 +1,7 @@
 import unittest
 from flask import Flask  
 import json
-
+from app import api
 class TestPost(unittest.TestCase):
 
 
