@@ -1,2 +1,9 @@
+language: python
+python:
+  - "3.x"
+  - "3.4"
+before_install:
+  python setup.py install
 
-language:python
+script:
+  python -m unittest app/test.py
