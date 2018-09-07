@@ -1,5 +1,5 @@
 import unittest
-import json
+import requests
 from app import api
 
 '''
@@ -13,12 +13,8 @@ class TestEndpoints(unittest.TestCase):
         '''
                 Testing if the GET  requests return the proper status codes
         '''
-        dummy = api.APP.test_client(self)
         payload = {"order_id": 19,
                    "order_content": "Little Chicken",
                    "user": "Eric",
                    "order_status": "Denied",
                    }
-        response = dummy.post(json.dumps(payload), headers={
-                              'content_type': 'application/json'})
-        self.assertEqual(response.status_code, 200)
