@@ -1,7 +1,7 @@
 import unittest
-import requests
+import json
 from flask import Flask
-from app import api
+from app import APP
 '''
 Tests for PUT requests
 '''
@@ -13,19 +13,12 @@ class TestPut(unittest.TestCase):
         '''
                 Test status code returns
         '''
-        payload = {'order_status': 'Test'}
-        dummy = requests.put(
-            'http://127.0.0.1:5000/orders/204863', json=payload)
-        self.assertEqual(dummy.status_code, 200)
-        dummy = requests.put(
-            'http://127.0.0.1:5000/orders/missing', json=payload)
-        self.assertEqual(dummy.status_code, 404)
+        dummy = APP.test_client(self)
+        payload = {"order_status": "Tests"}
 
-    def test_content(self):
-        '''
-                Tests the json result
-        '''
-        payload = {'order_status': 'TestPhrase'}
-        dummy = requests.put(
-            'http://127.0.0.1:5000/orders/204863', json=payload)
-        self.assertIn('TestPhrase', dummy.text)
+       # response = dummy.put(
+        #    '/orders/204863', data=json.dumps(payload), content_type='application/json')
+        response = dummy.put('/orders/60',  data=json.dumps({"order_status": "Tests"}),
+                             content_type='application/json')
+        print(response)
+        self.assertEqual(response.status_code, 200)
