@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from app import APP
+from app import api
 from app.resources import orders
 
 
