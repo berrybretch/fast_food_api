@@ -1,0 +1,23 @@
+import unittest
+import json
+from flask import Flask, request
+from app import api
+
+'''
+Tests for Api endpoints
+'''
+
+
+class TestEndpoints(unittest.TestCase):
+
+    def test_post_status_codes(self):
+        dummy = api.APP.test_client(self)
+        response = dummy.post('/orders', data=json.dumps(dict(order_id=1000,
+                                                              order_content='test', user="eric", order_status='testing')))
+        self.assertEquals(response.status_code, 200)
+	
+        #{"order_id": 60,
+        #"order_content": "Little Chicken",
+        #"user": "Eric",
+        #"order_status": "Denied",
+        #}
