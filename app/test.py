@@ -14,11 +14,12 @@ class TestPut(unittest.TestCase):
                 Test status code returns
         '''
         dummy = APP.test_client(self)
-        payload = {"order_status": "Tests"}
 
        # response = dummy.put(
         #    '/orders/204863', data=json.dumps(payload), content_type='application/json')
         response = dummy.put('/orders/60',  data=json.dumps({"order_status": "Tests"}),
                              content_type='application/json')
-        print(response)
         self.assertEqual(response.status_code, 200)
+        response = dummy.put('/orders/000000',  data=json.dumps({"order_status": "Tests"}),
+                             content_type='application/json')
+        self.assertEqual(response.status_code, 404)
