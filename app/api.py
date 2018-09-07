@@ -9,7 +9,7 @@ def update_status(order_id):
     Update the status of a particular order
     '''
     data = request.get_json()
-    status = data.get('status')
+    status = data.get('order_status')
     if not any(i.get('order_id') == order_id for i in orders):
         return 'Order does not exist', 404
     for i in orders:
