@@ -2,7 +2,7 @@ language: python
 python:
   - "3.6"
 before_install:
-  python setup.py install
+  pip3 install requests
 
 script:
   python -m unittest app/test.py
