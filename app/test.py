@@ -1,7 +1,7 @@
 import unittest
 from flask import Flask  
 import json
-from app import api
+from app import APP
 class TestPost(unittest.TestCase):
 
 
@@ -9,7 +9,7 @@ class TestPost(unittest.TestCase):
         '''
                 Testing if the POST requests return the proper status codes
         '''
-        dummy = api.APP.test_client(self)
+        dummy = APP.test_client(self)
         payload = {"order_id": 19,
                    "order_content": "Little Chicken",
                    "user": "Eric",
