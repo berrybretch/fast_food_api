@@ -1,4 +1,4 @@
 setuptools==38.4.0
 Flask==0.12.2
 gunicorn==19.9.0
-
+coverage==4.5.1
