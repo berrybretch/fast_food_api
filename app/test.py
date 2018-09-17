@@ -9,21 +9,6 @@ Tests for PUT requests
 
 class TestPut(unittest.TestCase):
 
-    def test_put(self):
-        '''
-                Test status code returns
-        '''
-        dummy = APP.test_client(self)
-
-       # response = dummy.put(
-        #    '/orders/204863', data=json.dumps(payload), content_type='application/json')
-        response = dummy.put('/api/v1/orders/60', data=json.dumps({"order_status": "Tests"}),
-                             content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-        response = dummy.put('/api/v1/orders/000000', data=json.dumps({"order_status": "Tests"}),
-                             content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-
     def test_client_get(self):
         '''
                 Testing if the GET  requests return the proper status codes
@@ -38,6 +23,12 @@ class TestPut(unittest.TestCase):
             dummy.get('/api/v1/orders/ericmwachala').status_code, 404)
         self.assertEqual(dummy.get('/api/v1/order/204863').status_code, 404)
         self.assertEqual(dummy.get('/api/v1/orders/12').status_code, 200)
+        self.assertNotEqual(dummy.get('/api/v1/orders/12').status_code, 400)
+        self.assertIsTrue(
+            dummy.get('/api/v1/orders/204863').status_code == 200)
+        self.assertIsFalse(
+            dummy.get('/api/v1/orders/204863').status_code == 400)
+        self.assertTrue(json.loads(get_orders()))
 
     def test_client_post(self):
         '''
@@ -52,3 +43,15 @@ class TestPut(unittest.TestCase):
         response = dummy.post('/api/v1/orders',  data=json.dumps(payload),
                               content_type='application/json')
         self.assertEqual(response.status_code, 200)
+        self.assertNotEqual(response.status_code, 404)
+        self.assertTrue(json.loads(add_order()))
+
+    def test_put(self):
+        '''
+                Test status code returns
+        '''
+        dummy = APP.test_client(self)
+        response = dummy.put('/api/v1/orders/60', data=json.dumps({"order_status": "Tests"}),
+                             content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(json.loads(update_status()))
