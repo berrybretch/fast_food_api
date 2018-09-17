@@ -28,7 +28,6 @@ class TestPut(unittest.TestCase):
             dummy.get('/api/v1/orders/204863').status_code == 200)
         self.assertFalse(
             dummy.get('/api/v1/orders/204863').status_code == 400)
-        self.assertTrue(json.loads(get_orders()))
 
     def test_client_post(self):
         '''
@@ -44,7 +43,6 @@ class TestPut(unittest.TestCase):
                               content_type='application/json')
         self.assertEqual(response.status_code, 200)
         self.assertNotEqual(response.status_code, 404)
-        self.assertTrue(json.loads(add_order()))
 
     def test_put(self):
         '''
@@ -54,4 +52,3 @@ class TestPut(unittest.TestCase):
         response = dummy.put('/api/v1/orders/60', data=json.dumps({"order_status": "Tests"}),
                              content_type='application/json')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(json.loads(update_status()))
