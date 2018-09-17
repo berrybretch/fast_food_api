@@ -3,7 +3,7 @@ from app import APP
 from app.resources import orders
 
 
-@APP.route('/api/v1/orders/<int:order_id>', methods=['PUT'])
+@APP.route('/api/v1/orders/<int:order_id>', methods=['PUT'], endpoint='update_status')
 def update_status(order_id):
     '''
     Update the status of a particular order
@@ -18,7 +18,7 @@ def update_status(order_id):
     return jsonify(orders)
 
 
-@APP.route('/api/v1/orders', methods=['GET'])
+@APP.route('/api/v1/orders', methods=['GET'], endpoint='get_all_orders')
 def get_orders():
     '''
     Gets all the orders
@@ -31,7 +31,7 @@ def get_orders():
     return jsonify(order_list)
 
 
-@APP.route('/api/v1/orders/<int:order_id>', methods=['GET'])
+@APP.route('/api/v1/orders/<int:order_id>', methods=['GET'], endpoint='get_single_order')
 def get_order_byid(order_id):
     '''
     Gets orders by a specific id
@@ -42,7 +42,7 @@ def get_order_byid(order_id):
     return jsonify(order)
 
 
-@APP.route('/api/v1/orders', methods=['POST'])
+@APP.route('/api/v1/orders', methods=['POST'], endpoint='add_new_order')
 def add_order():
     '''
     Adds an order to the list of orders
