@@ -24,9 +24,9 @@ class TestPut(unittest.TestCase):
         self.assertEqual(dummy.get('/api/v1/order/204863').status_code, 404)
         self.assertEqual(dummy.get('/api/v1/orders/12').status_code, 200)
         self.assertNotEqual(dummy.get('/api/v1/orders/12').status_code, 400)
-        self.assertIsTrue(
+        self.assertTrue(
             dummy.get('/api/v1/orders/204863').status_code == 200)
-        self.assertIsFalse(
+        self.assertFalse(
             dummy.get('/api/v1/orders/204863').status_code == 400)
         self.assertTrue(json.loads(get_orders()))
 
